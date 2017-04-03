@@ -21,7 +21,7 @@ The goals / steps of this project are the following:
 [image4]: ./examples/flipped_img.png "Flipped image"
 [image5]: ./examples/camera_views.png "3 camera views"
 [image6]: ./examples/training_plot.png "Plot of Train & Validation Loss"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image7]: ./examples/angles_adj_hist.png "Histogram of adjusted steering angles"
 
 
 ## Rubric Points
@@ -90,6 +90,7 @@ After some experimentation with generating my own training data, the [sample dat
 The overall strategy for deriving a model architecture was to use the CommAI architecture and experiment with adding layers if results were not satisfactory.
 
 In order to gauge how well the model was working, I split my image & steering angle data into training and validation sets. The below plot shows the loss from the final trained model.
+
 ![][image6]
 
 To combat any overfitting, I also included early stopping so that the training was terminated if the validation loss didn't improve after a certain number of epochs. (final model used `patience=1`)
@@ -110,6 +111,7 @@ Ultimately, using the left and right camera views to train the network (rather t
 #### 2. Final Model Architecture
 
 The final model architecture is from [CommaAI](https://github.com/commaai/research/blob/master/train_steering_model.py) (model.py lines 78-104) and consists of the following layers and layer sizes...
+
 ```
 Layer (type)                     Output Shape          Param #     Connected to                     
 ====================================================================================================
@@ -149,20 +151,27 @@ Non-trainable params: 0
 #### 3. Creation of the Training Set & Training Process
 
 The model was trained with sample data provided by Udacity, containing ~8000 car positions with 3 captured images per position (center, right, left). 
+
 ![][image5]
 
 Below is a histogram of steering angles found in the dataset.
+
 ![][image1]
 
-I experimented with flipping images and angles to augment the training data, but eventually just used the left and right camera images without any data augmentation. As an example, here is an image that has been flipped:
+I experimented with flipping images and angles to augment the training data, but eventually just used the left and right camera images without any data augmentation. As an example, here is an image that has been flipped:  
+
 ![][image4]
 
 I shuffled the data set and put 25% of the data into a validation set. Using both the left and right camera images resulted in ~12000 iamges for training, and ~4000 for validation.
 
+![][image7]
+
 I preprocessed the data by converting to HSV colorspace and normalizing to range -1.0 to 1.0.
+
 ![][image2]
 
 Images were also cropped to size (80, 320, 3). Here's an example:
+
 ![][image3]
 
 __Notes on the training process__:   
