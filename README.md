@@ -2,6 +2,17 @@
 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
+[//]: # (Image References)
+
+[image1]: ./examples/angles_hist.png "Histogram of steering angles"
+[image2]: ./examples/hsv_views.png "HSV color channels"
+[image3]: ./examples/cropped_img.png "Cropping2D result"
+[image4]: ./examples/flipped_img.png "Flipped image"
+[image5]: ./examples/camera_views.png "3 camera views"
+[image6]: ./examples/training_plot.png "Plot of Train & Validation Loss"
+[image7]: ./examples/angles_adj_hist.png "Histogram of adjusted steering angles"
+[image8]: ./examples/sample.gif "Sample output"
+
 Overview
 ---
 The goals / steps of this project are the following:
@@ -11,7 +22,7 @@ The goals / steps of this project are the following:
 * Test that the model successfully drives around track one without leaving the road
 * Summarize the results with a written report
 
-This README file describes how to output the video in the "Details About Files In This Directory" section.
+![][image8]
 
 ### Dependencies
 This lab requires:
@@ -61,12 +72,6 @@ ls run1
 [2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_451.jpg
 [2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_477.jpg
 [2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_528.jpg
-[2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_573.jpg
-[2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_618.jpg
-[2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_697.jpg
-[2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_723.jpg
-[2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_749.jpg
-[2017-01-09 16:10:23 EST]  12KiB 2017_01_09_21_10_23_817.jpg
 ...
 ```
 
@@ -89,45 +94,17 @@ python video.py run1 --fps 48
 The video will run at 48 FPS. The default FPS is 60.
 
 
-
-[//]: # (Image References)
-
-[image1]: ./examples/angles_hist.png "Histogram of steering angles"
-[image2]: ./examples/hsv_views.png "HSV color channels"
-[image3]: ./examples/cropped_img.png "Cropping2D result"
-[image4]: ./examples/flipped_img.png "Flipped image"
-[image5]: ./examples/camera_views.png "3 camera views"
-[image6]: ./examples/training_plot.png "Plot of Train & Validation Loss"
-[image7]: ./examples/angles_adj_hist.png "Histogram of adjusted steering angles"
-
-
-## Discussion Points
-Below discussion considers the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describes how they were addressed in my implementation.  
+## Discussion
 
 ### Files & Code
 
-#### 1. Required files to run the simulator in autonomous mode
-
 Project includes the following files:
-* model.py containing the script to create and train the model
-* drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network 
-* writeup_report.md summarizing the results
-* run1.mp4 video showing car driving autonomously around track one
-
-#### 2. Submission includes functional code
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
-```sh
-python drive.py model.h5
-```
-
-#### 3. Submission code is usable and readable
-- The `model.py` file contains the code for training and saving the convnet. The file shows the pipeline for training and validating the model.
-
-- The `drive.py` file was modified to drive with `16` as the speed setting and convert camera images to HSV colorspace.
-
-- The `Behavioral_Cloning_v1.ipynb` notebook shows how the model was created, along with additional commentary and data exploration.
-
+* `model.py` file contains the code for training and saving the convnet. 
+* `Behavioral_Cloning_v1.ipynb` notebook shows how the model was created, along with additional commentary and data exploration.
+* `drive.py` for driving the car in autonomous modem — modified to drive with `16` as the speed setting and convert camera images to HSV colorspace. 
+* `model.h5` contains a trained convolution neural network. 
+* `writeup_report.md` summarizes the results. 
+* `run1.mp4` video shows car driving autonomously around track one. 
 
 ### Model Architecture and Training Strategy
 
@@ -263,4 +240,4 @@ __Notes on the training process__:
 
 - As a final note, near the completion of the project I realized that by using keras with Theano backend resulted in my `Cropping2d` implementation to actually crop the _width_ of the input images (i.e., columns) rather than the top & bottom _rows_ of the images. Interestingly, the model was still able to learn how to drive autonomously around track one, perhaps by "memorizing" the sky or background objects near the top of the image. 
 
-    Switching to TensorFlow backend required some additional tuning of the steering angle adjustments and training with more epochs to achieve a robust model.
+  Switching to TensorFlow backend required some additional tuning of the steering angle adjustments and training with more epochs to achieve a robust model.
