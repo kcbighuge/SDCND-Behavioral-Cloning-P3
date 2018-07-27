@@ -2,6 +2,8 @@
 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
+[![Run on FloydHub](https://static.floydhub.com/button/button-small.svg)](https://floydhub.com/run)
+
 [//]: # (Image References)
 
 [image1]: ./examples/angles_hist.png "Histogram of steering angles"
